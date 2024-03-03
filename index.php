@@ -7,25 +7,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="letter-image">
-        <div class="animated-mail">
-            <div class="back-fold"></div>
-            <div class="letter">
-                <div class="letter-border"></div>
-                <div class="letter-title"></div>
-                <div class="letter-context"></div>
-                <div class="letter-context-body">
-                    <p><strong>Dear,<br>Ram Avtar</strong><br> you are invited BPCON 2023</p>
+    <div class="wrapper">
+        <div class="letter-image">
+            <div class="animated-mail">
+                <div class="back-fold"></div>
+                <div class="letter">
+                    <div class="letter-context-body">
+                        <img src="images/invitations/image-2.png" alt="">
+                    </div>
                 </div>
-                <div class="letter-stamp">
-                    <div class="letter-stamp-inner"></div>
-                </div>
+                <div class="top-fold"></div>
+                <div class="body"></div>
+                <div class="left-fold"></div>
             </div>
-            <div class="top-fold"></div>
-            <div class="body"></div>
-            <div class="left-fold"></div>
+            <div class="shadow"></div>
         </div>
-        <div class="shadow"></div>
     </div>
 </body>
 </html>

@@ -17,13 +17,8 @@ body {
 
 .letter-image {
   position: relative;
-  /* bottom: 0; */
-  /* left: 50%; */
   width: 374px;
   height: 240px;
-  /* -webkit-transform: translate(-50%, 0);
-  -moz-transform: translate(-50%, 0);
-  transform: translate(-50%, 0); */
   cursor: pointer;
   margin: 0 auto;
 }
@@ -288,7 +283,7 @@ input[type=radio] {
 .player {
   background-color: #fff;
   border-radius: 8px;
-  min-width: 390px;
+  width: 100%;
   padding: 16px 10px;
 }
 
@@ -306,15 +301,8 @@ input[type=radio] {
 
 .play-icon{
   margin-right: 10px;
+  margin-left: 10px;
 }
-/* .next-icon {
-  position: absolute;
-  right: 0;
-}
-.back-icon {
-  position: absolute;
-  left: 0;
-} */
 
 .play-icon img {
   width: 20px;
@@ -322,9 +310,10 @@ input[type=radio] {
 }
 
 .wedding-info {
-  width: calc(100% - 32px);
   display: block;
   text-align: center;
+  position: relative;
+  display: none;
 }
 
 .upper-part.last-part .wedding-info {
@@ -347,8 +336,8 @@ input[type=radio] {
 }
 
 .subtitle, .time {
-  font-size: 12px;
-  line-height: 16px;
+  font-size: 15px;
+  line-height: 20px;
   color: #c6c5c6;
 }
 
@@ -380,22 +369,6 @@ input[type=radio] {
 .info-area {
   width: 100%;
   transition: transform .4s ease-in;
-}
-
-#item-2:checked ~ .player #test {
-  transform: translateY(0);
-}
-
-#item-2:checked ~ .player #test  {
-  transform: translateY(-40px);
-}
-
-#item-3:checked ~ .player #test  {
-  transform: translateY(-80px);
-}
-
-#item-4:checked ~ .player #test  {
-  transform: translateY(-120px);
 }
 
 @keyframes pulse {
@@ -497,4 +470,8 @@ input[type=radio] {
   bottom: -36px;
   font-weight: bold;
   color: red;
+}
+
+#wedding-info-1 {
+  display: block;
 }

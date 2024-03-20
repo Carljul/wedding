@@ -23,7 +23,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yas and Jul Wedding Invitation</title>
+    <title>You are Invited - Yasmin & Julcarl's Wedding</title>
     <link rel="stylesheet" href="styles.css">
     <script src="jquery-3.7.1.min.js"></script>
     <script src="behavior.js"></script>
@@ -92,25 +92,25 @@
                     <img src="images/back-icon.png" alt="">
                 </div>
                 <div class="info-area" id="test">
-                    <label class="wedding-info" id="wedding-info-1">
+                    <label class="wedding-info" data-info="1" id="wedding-info-1">
                         <div class="title">You are Invited</div>
                         <div class="sub-line">
                             <div class="subtitle">Witness the most important day of our lives</div>
                         </div>
                     </label>
-                    <label class="wedding-info" id="wedding-info-2">
+                    <label class="wedding-info" data-info="2" id="wedding-info-2">
                         <div class="title">What you should know</div>
                         <div class="sub-line">
                             <div class="subtitle">Attire, Venue, Gifts, all there.</div>
                         </div>
                     </label>
-                    <label class="wedding-info" id="wedding-info-3">
+                    <label class="wedding-info" data-info="3" id="wedding-info-3">
                         <div class="title">Entourage</div>
                         <div class="sub-line">
                             <div class="subtitle">Cherished Members of Our Journey</div>
                         </div>
                     </label>
-                    <label class="wedding-info" id="wedding-info-4">
+                    <label class="wedding-info" data-info="4" id="wedding-info-4">
                         <button class="emerald-button">Accept Invitation</button>
                         <button class="gold-button">Decline Invitation</button>
                     </label>

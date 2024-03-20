@@ -44,8 +44,19 @@ $(document).ready(function() {
         let radio = $('input[type="radio"]:checked').val();
         let newId = parseInt(radio) - 1
         if (newId != 0) {
-            $('#item-'+(newId)).attr('checked', true);
+            $('#item-'+(newId)).prop('checked', true);
+            $('#wedding-info-1').hide();
+            $('#wedding-info-2').hide();
+            $('#wedding-info-3').hide();
+            $('#wedding-info-4').hide();
+            $('#wedding-info-'+newId).show();
         }
+        
+        if (newId < 4) {
+            $('.next-icon').show()
+            $('.upper-part').removeClass('last-part')
+        }
+        
         $('body').toggleClass('blue');
     });
     $('.next-icon').on('click', function () {
@@ -56,7 +67,12 @@ $(document).ready(function() {
             $('.upper-part').addClass('last-part')
         }
         if (newId != 5) {
-            $('#item-'+(newId)).attr('checked', true);
+            $('#item-'+(newId)).prop('checked', true);
+            $('#wedding-info-1').hide();
+            $('#wedding-info-2').hide();
+            $('#wedding-info-3').hide();
+            $('#wedding-info-4').hide();
+            $('#wedding-info-'+newId).show();
         }
         $('body').toggleClass('blue');
     });

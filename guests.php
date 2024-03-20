@@ -45,7 +45,7 @@
             }
         }
     } catch (Exception $e) {
-        echo 'No Connection has been made';
+        echo 'No Connection has been made'.$e;
     }
 ?>
 <!DOCTYPE html>

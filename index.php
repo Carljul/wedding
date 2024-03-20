@@ -1,19 +1,19 @@
 <?php
     $imagesRSVP1 = [
         'Cover' => 'images/invitations/Cover.png',
-        'Guide' => 'images/invitations/AttireGuide.png',
+        'Guide' => 'images/invitations/Guide.png',
         'Entourage' => 'images/invitations/Entourage.png',
         'RSVP' => 'images/invitations/RSVP1.png',
     ];
     $imagesRSVP2 = [
         'Cover' => 'images/invitations/Cover.png',
-        'Guide' => 'images/invitations/AttireGuide.png',
+        'Guide' => 'images/invitations/Guide.png',
         'Entourage' => 'images/invitations/Entourage.png',
         'RSVP' => 'images/invitations/RSVP2.png',
     ];
     $imagesRSVP3 = [
         'Cover' => 'images/invitations/Cover.png',
-        'Guide' => 'images/invitations/AttireGuide.png',
+        'Guide' => 'images/invitations/Guide.png',
         'Entourage' => 'images/invitations/Entourage.png',
         'RSVP' => 'images/invitations/RSVP3.png',
     ];
@@ -27,9 +27,22 @@
     <link rel="stylesheet" href="styles.css">
     <script src="jquery-3.7.1.min.js"></script>
     <script src="behavior.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="wrapper">
+        <div class="flower-border">
+            <div class="circle-image">
+                <img src="images/swapping-backgrounds/1.jpg" alt="">
+            </div>
+        </div>
+        <div class="message">
+            <h1>Yas & Jul</h1>
+            <p>INVITE YOU TO CELEBRATE <br> THEIR MARRAIAGE</p>
+            <span>Open the invitation by tapping the stamp seal</span>
+        </div>
         <div class="letter-image">
             <img src="images/sealwax.webp" alt="" id="button-click">
             <div class="animated-mail">
@@ -37,7 +50,7 @@
                 <div class="letter">
                     <div class="letter-context-body">
                         <img src="images/invitations/Cover.png" alt="">
-                        <img src="images/invitations/AttireGuide.png" alt="">
+                        <img src="images/invitations/Guide.png" alt="">
                         <img src="images/invitations/Entourage.png" alt="">
                         <img src="images/invitations/RSVP1.png" alt="">
                     </div>
@@ -74,6 +87,9 @@
         </div>
         <div class="player">
             <div class="upper-part">
+                <div class="play-icon back-icon">
+                    <img src="images/back-icon.png" alt="">
+                </div>
                 <div class="info-area" id="test">
                     <label class="wedding-info" id="wedding-info-1">
                         <div class="title">You are Invited</div>
@@ -98,7 +114,7 @@
                         <button class="gold-button">Decline Invitation</button>
                     </label>
                 </div>
-                <div class="play-icon">
+                <div class="play-icon next-icon">
                     <img src="images/next-icon.png" alt="">
                 </div>
             </div>

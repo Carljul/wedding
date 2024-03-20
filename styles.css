@@ -1,36 +1,31 @@
+
 body {
   margin: 0;
 }
 .wrapper {
   position: relative;
   width: 100%;
-  height: 100vh;
-  /* display: none; */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: -150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 100px;
+  background-image: url('images/background.png');
 }
 
-.wrapper::before {
-  content: "";
-  background-image: url('images/invitations/lift.jpg');
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  opacity: 0.2;
-}
 .letter-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  position: relative;
+  /* bottom: 0; */
+  /* left: 50%; */
   width: 374px;
-  height: 300px;
-  -webkit-transform: translate(-50%, 0);
+  height: 240px;
+  /* -webkit-transform: translate(-50%, 0);
   -moz-transform: translate(-50%, 0);
-  transform: translate(-50%, 0);
+  transform: translate(-50%, 0); */
   cursor: pointer;
+  margin: 0 auto;
 }
 
 .animated-mail {
@@ -53,7 +48,7 @@ body {
 }
 .animated-mail .top-fold {
   position: absolute;
-    top: -51px;
+    top: -50px;
     width: 0;
     height: 0;
     border-style: solid;
@@ -132,7 +127,7 @@ body {
   width: 150px;
   top: 50%;
   left: 50%;
-  transform: translate(-54%, -140%);
+  transform: translate(-54%, -116%);
   opacity: 1;
   transition: 0.3s 0.2s;
   
@@ -145,20 +140,20 @@ body {
 /* Clicked State */
 #button-click.clicked {
   transform-origin: left;
-  transform: translate(-54%, -35%);
+  transform: translate(-54%, 0);
 }
 
 
 @-webkit-keyframes bounce { 
-  0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(-35%) translateX(-54%);} 
-  40% {-webkit-transform: translateY(-50px) translateX(-54%);} 
-  60% {-webkit-transform: translateY(-35%) translateX(-54%);} 
+  0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0) translateX(-54%);} 
+  40% {-webkit-transform: translateY(-15px) translateX(-54%);} 
+  60% {-webkit-transform: translateY(0) translateX(-54%);} 
 } 
 
 @keyframes bounce { 
-  0%, 20%, 50%, 80%, 100% {transform: translateY(-35%) translateX(-54%);} 
-  40% {transform: translateY(-50px) translateX(-54%);} 
-  60% {transform: translateY(-35%) translateX(-54%);} 
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-54%);} 
+  40% {transform: translateY(-15px) translateX(-54%);} 
+  60% {transform: translateY(0) translateX(-54%);} 
 }
 
 .bounce { 
@@ -181,7 +176,7 @@ body {
   z-index: 0;
 }
 .letter-image .animated-mail .letter.clicked {
-  height: 2600px;
+  height: 3000px;
   content: 'ram avtar';
 }
 .letter-image .shadow.clicked {
@@ -207,7 +202,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 30px 10px;
   font-family: 'DM Sans', sans-serif;
   transition: background .4s ease-in;
   
@@ -238,11 +232,11 @@ input[type=radio] {
   max-height: 100vh;
   height: 100%;
   transform-style: preserve-3d;
-  display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  padding: 30px 10px;
   display: none;
 }
 
@@ -294,7 +288,7 @@ input[type=radio] {
 .player {
   background-color: #fff;
   border-radius: 8px;
-  min-width: 320px;
+  min-width: 390px;
   padding: 16px 10px;
 }
 
@@ -302,8 +296,7 @@ input[type=radio] {
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 12px;
-  height: 36px;
+  height: 46px;
   overflow: hidden;
 }
 
@@ -313,9 +306,16 @@ input[type=radio] {
 
 .play-icon{
   margin-right: 10px;
+}
+/* .next-icon {
   position: absolute;
   right: 0;
 }
+.back-icon {
+  position: absolute;
+  left: 0;
+} */
+
 .play-icon img {
   width: 20px;
   animation: pulse 2s infinite;
@@ -324,6 +324,7 @@ input[type=radio] {
 .wedding-info {
   width: calc(100% - 32px);
   display: block;
+  text-align: center;
 }
 
 .upper-part.last-part .wedding-info {
@@ -343,12 +344,6 @@ input[type=radio] {
   color: #403d40;
   font-size: 14px;
   line-height: 24px;
-}
-
-.sub-line {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
 }
 
 .subtitle, .time {
@@ -384,8 +379,6 @@ input[type=radio] {
 
 .info-area {
   width: 100%;
-  position: absolute;
-  top: 0;
   transition: transform .4s ease-in;
 }
 
@@ -442,4 +435,66 @@ input[type=radio] {
 .gold-button {
   background-color: #FFD700;
   color: #fff;
+}
+
+
+
+.circle-image {
+  width: 250px;
+    height: 250px;
+    border-radius: 100%;
+    display: block;
+    overflow: hidden;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 70%);
+    outline: 6px solid #FFF;
+    background-color: #fff;
+}
+
+.flower-border{
+  margin-top: 10%;
+  height: 334px;
+}
+.flower-border:before {
+  content: '';
+  background-image: url('images/circle-border.png');
+  background-size: cover;
+  position: absolute;
+  width: 321px;
+  height: 337px;
+  left: 50%;
+  transform: translate(-50%, 35%);
+}
+
+.circle-image img {
+  width: 100%;
+}
+
+
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.message h1 {
+  font-family: "Great Vibes", cursive;
+  margin-bottom: 0;
+  margin-top: 60px;
+}
+
+.message p {
+  border-top: 1px solid black;
+  padding: 10px;
+  border-bottom: 1px solid black;;
+}
+
+.message span {
+  position: absolute;
+  bottom: -36px;
+  font-weight: bold;
+  color: red;
 }

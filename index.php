@@ -35,7 +35,7 @@
     <div class="wrapper">
         <div class="flower-border">
             <div class="circle-image">
-                <img src="images/swapping-backgrounds/1.jpg" alt="">
+                <img src="images/backgrounds/1.png" alt="">
             </div>
         </div>
         <div class="message">

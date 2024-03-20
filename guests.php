@@ -1,45 +1,51 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "wedding";
-
-    // Create connection
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
-
-    // Check connection
-    if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-    }
-    echo "Connected successfully";
+    $connected = false;
+    try {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "wedding";
     
-    if(isset($_POST['method'])) {
-        if ($_POST['method'] == 'toAdd') {
-            $guest1 = isset($_POST['guest1']) ? $_POST['guest1'] : '';
-            $guest2 = isset($_POST['guest2']) ? $_POST['guest2'] : '';
-            $guest3 = isset($_POST['guest3']) ? $_POST['guest3'] : '';
-            $kidsCount = isset($_POST['kidsCount']) ? $_POST['kidsCount'] : 0;
-            $willAttend = isset($_POST['willAttend']) ? $_POST['willAttend']: 0;
-            $sql = "INSERT INTO attendees
-                (guest_one, guest_two, guest_three, kids_count, willattend)
-                VALUES
-                ('".$guest1."', '".$guest2."', '".$guest3."', '".$kidsCount."', '".$willAttend."')";
-            if (mysqli_query($conn, $sql)) {
-                echo "New record created successfully";
-            } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-            }
-        }   else if ($_POST['method'] == 'toDelete' && isset($_POST['deleteId'])) {
-            echo 'Here';
-            $id = $_POST['deleteId'];
-            $sqlToDelete = 'DELETE FROM attendees WHERE id = '. $id;
-
-            if (mysqli_query($conn, $sqlToDelete)) {
-                echo "Deleted record successfully";
-            } else {
-                echo "Error: " . $sqlToDelete . "<br>" . mysqli_error($conn);
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+    
+        // Check connection
+        if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+        }
+        echo "Connected successfully";
+        $connected = true;
+        
+        if(isset($_POST['method'])) {
+            if ($_POST['method'] == 'toAdd') {
+                $guest1 = isset($_POST['guest1']) ? $_POST['guest1'] : '';
+                $guest2 = isset($_POST['guest2']) ? $_POST['guest2'] : '';
+                $guest3 = isset($_POST['guest3']) ? $_POST['guest3'] : '';
+                $kidsCount = isset($_POST['kidsCount']) ? $_POST['kidsCount'] : 0;
+                $willAttend = isset($_POST['willAttend']) ? $_POST['willAttend']: 0;
+                $sql = "INSERT INTO attendees
+                    (guest_one, guest_two, guest_three, kids_count, willattend)
+                    VALUES
+                    ('".$guest1."', '".$guest2."', '".$guest3."', '".$kidsCount."', '".$willAttend."')";
+                if (mysqli_query($conn, $sql)) {
+                    echo "New record created successfully";
+                } else {
+                    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                }
+            }   else if ($_POST['method'] == 'toDelete' && isset($_POST['deleteId'])) {
+                echo 'Here';
+                $id = $_POST['deleteId'];
+                $sqlToDelete = 'DELETE FROM attendees WHERE id = '. $id;
+    
+                if (mysqli_query($conn, $sqlToDelete)) {
+                    echo "Deleted record successfully";
+                } else {
+                    echo "Error: " . $sqlToDelete . "<br>" . mysqli_error($conn);
+                }
             }
         }
+    } catch (Exception $e) {
+        echo 'No Connection has been made';
     }
 ?>
 <!DOCTYPE html>
@@ -85,6 +91,8 @@
         </thead>
         <tbody>
             <?php
+            if ($connected) {
+
                 $sqlData = "SELECT * FROM attendees";
                 $data = [];
                 $result = mysqli_query($conn, $sqlData);
@@ -102,6 +110,9 @@
                     }
                 }
                 echo $html;
+            } else {
+                echo "<tr><td colspan='6'>No Record Found</td></tr>";
+            }
             ?>
         </tbody>
     </table>

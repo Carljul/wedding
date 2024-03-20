@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="jquery-3.7.1.min.js"></script>
     <script src="behavior.js"></script>
+    <link rel="shortcut icon" href="images/favico/favicon.ico" type="image/x-icon" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">

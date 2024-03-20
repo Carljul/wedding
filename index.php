@@ -17,6 +17,37 @@
         'Entourage' => 'images/invitations/Entourage.png',
         'RSVP' => 'images/invitations/RSVP3.png',
     ];
+    $invitee = null;
+
+    if (isset($_GET['id'])) {
+        $dev = false;
+        $connected = false;
+        try {
+            $servername = "localhost";
+            $username = $dev ? "u585112692_wedding" : "root";
+            $password = $dev ? "Yassel23!" : "";
+            $dbname = $dev ? "u585112692_wedding" : "wedding";
+
+            // Create connection
+            $conn = mysqli_connect($servername, $username, $password, $dbname);
+        
+            // Check connection
+            if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+            }
+
+            $connected = true;
+            $sqlData = "SELECT * FROM attendees WHERE id = ".$_GET['id'];
+            $data = [];
+            $result = mysqli_query($conn, $sqlData);
+            
+            if (mysqli_num_rows($result) > 0) {
+                $invitee = mysqli_fetch_assoc($result);
+            }
+        } catch (Exception $e) {
+            
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,14 +142,34 @@
                         </div>
                     </label>
                     <label class="wedding-info" data-info="4" id="wedding-info-4">
-                        <button class="emerald-button">Accept Invitation</button>
-                        <button class="gold-button">Decline Invitation</button>
+                        <!-- <button id="accept" class="emerald-button">Accept Invitation</button> -->
+                        <label class="emerald-button" for="modal-2">Accept Invitation</label>
+                        <label class="gold-button" for="modal-1">Decline Invitation</label>
                     </label>
                 </div>
                 <div class="play-icon next-icon">
                     <img src="images/next-icon.png" alt="">
                 </div>
             </div>
+        </div>
+    </div>
+
+    
+    <input class="modal-state" id="modal-1" type="checkbox" />
+    <div class="modal">
+        <label class="modal__bg" for="modal-1"></label>
+        <div class="modal__inner">
+            <label class="modal__close" for="modal-1"></label>
+            <p><?=$invitee ? $invitee['guest_one'] : ''?></p>
+        </div>
+    </div>
+
+    <input class="modal-state" id="modal-2" type="checkbox" />
+    <div class="modal">
+        <label class="modal__bg" for="modal-2"></label>
+        <div class="modal__inner">
+            <label class="modal__close" for="modal-2"></label>
+            <p><?=$invitee ? $invitee['guest_one'] : ''?></p>
         </div>
     </div>
 </body>

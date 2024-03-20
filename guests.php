@@ -1,10 +1,13 @@
 <?php
+    $dev = false;
     $connected = false;
     try {
         $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "wedding";
+        $username = $dev ? "u585112692_wedding" : "root";
+        $password = $dev ? "Yassel23!" : "";
+        $dbname = $dev ? "u585112692_wedding" : "wedding";
+
+        $link = $dev ? 'http://www.yas-and-jul.website/?id=':'http://localhost/wedding/?id=';
     
         // Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -45,7 +48,7 @@
             }
         }
     } catch (Exception $e) {
-        echo 'No Connection has been made'.$e;
+        echo 'No Connection has been made: '.$e;
     }
 ?>
 <!DOCTYPE html>
@@ -57,6 +60,18 @@
     <script src="jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
     <script src="//cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
+    <style>
+        button {
+            border: 0;
+            padding: 5px 10px;
+            height: 50px;
+            cursor: pointer;
+        }
+        .actionColumn {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
 </head>
 <body>
     <form action="guests.php" method="POST">
@@ -73,6 +88,7 @@
         <br>
         <label for="kidsCount">Kids Count</label>
         <input type="number" name="kidsCount" placeholder="Enter Kids Count"/>
+        <br>
         <label for="willAttend">Will Attend</label>
         <input type="number" name="willAttend" placeholder="Will Attend"/>
         <br>
@@ -81,6 +97,7 @@
     <table id="myTable">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Guest 1</th>
                 <th>Guest 2</th>
                 <th>Guest 3</th>
@@ -92,7 +109,6 @@
         <tbody>
             <?php
             if ($connected) {
-
                 $sqlData = "SELECT * FROM attendees";
                 $data = [];
                 $result = mysqli_query($conn, $sqlData);
@@ -100,18 +116,17 @@
                 if (mysqli_num_rows($result) > 0) {
                     while($row = mysqli_fetch_assoc($result)) {
                         $html .= '<tr>';
+                        $html .= '<td>'.$row['id'].'</td>';
                         $html .= '<td>'.$row['guest_one'].'</td>';
                         $html .= '<td>'.$row['guest_two'].'</td>';
                         $html .= '<td>'.$row['guest_three'].'</td>';
                         $html .= '<td>'.$row['kids_count'].'</td>';
                         $html .= '<td>'.$row['willattend'].'</td>';
-                        $html .= '<td><form action="guests.php" method="POST"><input hidden name="method" value="toDelete" /><input name="deleteId" value="'.$row['id'].'" hidden/><button type="submit">Delete</button></form></td>';
+                        $html .= '<td class="actionColumn"><form action="guests.php" method="POST"><input hidden name="method" value="toDelete" /><input name="deleteId" value="'.$row['id'].'" hidden/><button type="submit">Delete</button></form><button data-link="'.$link.''.$row['id'].'" class="copy-link">Copy Link</button></td>';
                         $html .= '</tr>';
                     }
                 }
                 echo $html;
-            } else {
-                echo "<tr><td colspan='6'>No Record Found</td></tr>";
             }
             ?>
         </tbody>
@@ -119,6 +134,16 @@
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable();
+
+            $('.copy-link').on('click', function () {
+                let toCopy = $(this).data('link');
+                // Copy the text inside the text field
+                navigator.clipboard.writeText(toCopy);
+
+                // Alert the copied text
+                alert("Copied the link: " + toCopy);
+            })
+
         })
     </script>
 </body>

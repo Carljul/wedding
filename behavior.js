@@ -31,12 +31,12 @@ $(document).ready(function() {
             $('.top-fold').addClass('clicked');
             $('.letter').addClass('clicked');
         }, 300)
-        // setTimeout(() => {
-        //     $('.wrapper').hide('slow', function () {
-        //         $('body').css('background-color', '#50C878')
-        //         $('.container').css('display', 'flex');
-        //     });
-        // },1300)
+        setTimeout(() => {
+            $('.wrapper').hide('slow', function () {
+                $('body').css('background-color', '#50C878')
+                $('.container').css('display', 'flex');
+            });
+        },1300)
     });
 
 

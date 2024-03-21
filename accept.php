@@ -1,6 +1,6 @@
 <?php
+include 'env.php';
 if (isset($_POST['submit'])) {
-  $dev = false;
   $connected = false;
   // Connection
   $servername = "localhost";

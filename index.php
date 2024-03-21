@@ -1,4 +1,5 @@
 <?php
+include 'env.php';
     $imagesRSVP1 = [
         'Cover' => 'images/invitations/Cover.png',
         'Guide' => 'images/invitations/Guide.png',
@@ -20,7 +21,6 @@
     $invitee = null;
 
     if (isset($_GET['id'])) {
-        $dev = false;
         $connected = false;
         try {
             $servername = "localhost";

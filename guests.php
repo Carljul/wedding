@@ -1,5 +1,5 @@
 <?php
-    $dev = false;
+include 'env.php';
     $connected = false;
     try {
         $servername = "localhost";

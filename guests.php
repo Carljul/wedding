@@ -24,12 +24,14 @@
                 $guest1 = isset($_POST['guest1']) ? $_POST['guest1'] : '';
                 $guest2 = isset($_POST['guest2']) ? $_POST['guest2'] : '';
                 $guest3 = isset($_POST['guest3']) ? $_POST['guest3'] : '';
+                $guestCount = isset($_POST['guestCount']) ? $_POST['guestCount'] : '';
                 $kidsCount = isset($_POST['kidsCount']) ? $_POST['kidsCount'] : 0;
                 $willAttend = isset($_POST['willAttend']) ? $_POST['willAttend']: 0;
+                $responded = isset($_POST['responded']) ? $_POST['responded']: 0;
                 $sql = "INSERT INTO attendees
-                    (guest_one, guest_two, guest_three, kids_count, willattend)
+                    (guest_one, guest_two, guest_three, kids_count, willattend, guest_count, responded)
                     VALUES
-                    ('".$guest1."', '".$guest2."', '".$guest3."', '".$kidsCount."', '".$willAttend."')";
+                    ('".$guest1."', '".$guest2."', '".$guest3."', '".$kidsCount."', '".$willAttend."', '".$guestCount."', '".$responded."')";
                 if (mysqli_query($conn, $sql)) {
                     echo "New record created successfully";
                 } else {
@@ -92,6 +94,9 @@
         <label for="willAttend">Will Attend</label>
         <input type="number" name="willAttend" placeholder="Will Attend"/>
         <br>
+        <label for="guestCount">Guest Count</label>
+        <input type="number" name="guestCount" placeholder="Guests Count"/>
+        <br>
         <button type='submit'>Save</button>
     </form>
     <table id="myTable">
@@ -103,6 +108,8 @@
                 <th>Guest 3</th>
                 <th>With Kids</th>
                 <th>Wil attend</th>
+                <th>Guests Count</th>
+                <th>Responded</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -122,7 +129,9 @@
                         $html .= '<td>'.$row['guest_three'].'</td>';
                         $html .= '<td>'.$row['kids_count'].'</td>';
                         $html .= '<td>'.$row['willattend'].'</td>';
-                        $html .= '<td class="actionColumn"><form action="guests.php" method="POST"><input hidden name="method" value="toDelete" /><input name="deleteId" value="'.$row['id'].'" hidden/><button type="submit">Delete</button></form><button data-link="'.$link.''.$row['id'].'" class="copy-link">Copy Link</button></td>';
+                        $html .= '<td>'.$row['guest_count'].'</td>';
+                        $html .= '<td>'.$row['responded'].'</td>';
+                        $html .= '<td class="actionColumn"><form action="guests.php" method="POST"><input hidden name="method" value="toDelete" /><input name="deleteId" value="'.$row['id'].'" hidden/><button type="submit">Delete</button></form><a href="'.$link.''.$row['id'].'" target="_blank">Visit Link</a></td>';
                         $html .= '</tr>';
                     }
                 }

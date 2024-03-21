@@ -25,12 +25,19 @@ $(document).ready(function() {
 
     $('#button-click').on('click', function() {
         $(this).addClass('clicked');
+        // Shadow
+        setTimeout(() => {
+            $('.shadow').addClass('clicked');
+        }, 100);
+        // Flowing Invitations Open Envelope
         setTimeout(() => {
             $(this).addClass('bounce');
             $('.animated-mail').addClass('clicked');
             $('.top-fold').addClass('clicked');
             $('.letter').addClass('clicked');
         }, 300)
+
+        // Showing Reservation
         setTimeout(() => {
             $('.wrapper').hide('slow', function () {
                 $('body').css('background-color', '#50C878')

@@ -1,23 +1,39 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
 
 body {
-  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', sans-serif;
+  transition: background .4s ease-in;
+  text-align: center;
+  
+  &.blue {
+    background-color: #428aa6;
+  }
 }
+
 .wrapper {
   position: relative;
-  width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position-x: -150px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 100px;
   background-image: url('images/background.png');
 }
 
 .letter-image {
   position: relative;
-  width: 374px;
+  width: 100%;
+  max-width: 374px;
+  min-width: 374px;
   height: 240px;
   cursor: pointer;
   margin: 0 auto;
@@ -25,6 +41,7 @@ body {
 
 .animated-mail {
   position: absolute;
+  bottom: 0;
   height: 150px;
   width: 375px;
   -webkit-transition: 0.4s;
@@ -101,7 +118,7 @@ body {
 
 .shadow {
   position: absolute;
-  top: 200px;
+  bottom: -88px;
   left: 50%;
   width: 400px;
   height: 30px;
@@ -122,7 +139,7 @@ body {
   width: 150px;
   top: 50%;
   left: 50%;
-  transform: translate(-54%, -116%);
+  transform: translate(-54%, -25%);
   opacity: 1;
   transition: 0.3s 0.2s;
   
@@ -140,15 +157,15 @@ body {
 
 
 @-webkit-keyframes bounce { 
-  0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0) translateX(-54%);} 
-  40% {-webkit-transform: translateY(-15px) translateX(-54%);} 
-  60% {-webkit-transform: translateY(0) translateX(-54%);} 
+  0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(100px) translateX(-54%);} 
+  40% {-webkit-transform: translateY(85px) translateX(-54%);} 
+  60% {-webkit-transform: translateY(100px) translateX(-54%);} 
 } 
 
 @keyframes bounce { 
-  0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-54%);} 
-  40% {transform: translateY(-15px) translateX(-54%);} 
-  60% {transform: translateY(0) translateX(-54%);} 
+  0%, 20%, 50%, 80%, 100% {transform: translateY(100px) translateX(-54%);} 
+  40% {transform: translateY(85px) translateX(-54%);} 
+  60% {transform: translateY(100px) translateX(-54%);} 
 }
 
 .bounce { 
@@ -184,26 +201,6 @@ body {
 
 * {
   box-sizing: border-box;
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-}
-
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'DM Sans', sans-serif;
-  transition: background .4s ease-in;
-  
-  
-  &.blue {
-    background-color: #428aa6;
-  }
 }
 
 input[type=radio] {
@@ -284,14 +281,14 @@ input[type=radio] {
   background-color: #fff;
   border-radius: 8px;
   width: 100%;
-  padding: 16px 10px;
+  padding: 0 10px;
 }
 
 .upper-part {
   position: relative;
   display: flex;
   align-items: center;
-  height: 46px;
+  height: 80px;
   overflow: hidden;
 }
 
@@ -413,8 +410,6 @@ input[type=radio] {
   color: #fff;
 }
 
-
-
 .circle-image {
   width: 250px;
     height: 250px;
@@ -423,7 +418,7 @@ input[type=radio] {
     overflow: hidden;
     position: relative;
     left: 50%;
-    transform: translate(-50%, 70%);
+    transform: translate(-50%, 10%);
     outline: 6px solid #FFF;
     background-color: #fff;
 }
@@ -440,13 +435,12 @@ input[type=radio] {
   width: 321px;
   height: 337px;
   left: 50%;
-  transform: translate(-50%, 35%);
+  transform: translate(-50%, -10%);
 }
 
 .circle-image img {
   width: 100%;
 }
-
 
 .message {
   display: flex;
@@ -459,7 +453,7 @@ input[type=radio] {
 .message h1 {
   font-family: "Great Vibes", cursive;
   margin-bottom: 0;
-  margin-top: 60px;
+  margin-top: 0;
 }
 
 .message p {
@@ -480,16 +474,6 @@ input[type=radio] {
 }
 
 /* Modal */
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -544,7 +528,7 @@ input[type=radio] {
   background: #fff;
   border-radius: 5px;
   padding: 1em 2em;
-  height: 50%;
+  height: 38%;
 }
 
 .modal__close {
@@ -583,7 +567,6 @@ input[type=radio] {
 	
   .modal__inner {
     width: 90%;
-    height: 90%;
     box-sizing: border-box;
   }
 }
@@ -591,11 +574,6 @@ input[type=radio] {
 
 /* Other
  * =============================== */
-body {
-  padding: 1%;
-  font: 1/1.5em sans-serif;
-  text-align: center;
-}
 
 .btn {
   cursor: pointer;
@@ -634,4 +612,41 @@ p img {
   height: auto;
   float: left;
   margin: 0 1em 1em 0;
+}
+
+.accept-message,
+.decline-message {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.accept-message p,
+.decline-message p {
+  margin: 0;
+}
+
+.accept-message .name,
+.decline-message .name {
+  font-family: 'Great Vibes', cursive;
+  font-size: 29px;
+  margin-bottom: 10px;
+}
+
+.accept-message .confirmation,
+.decline-message .confirmation {
+  text-transform: uppercase;
+  font-family: 'circular';
+}
+
+.accept-message #accept-invitation,
+.decline-message #decline-invitation {
+  border: 0;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-family: 'circular';
 }

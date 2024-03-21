@@ -43,6 +43,13 @@
             
             if (mysqli_num_rows($result) > 0) {
                 $invitee = mysqli_fetch_assoc($result);
+                
+                $guestOne = $invitee['guest_one'];
+                $guestTwo = $invitee['guest_two'];
+                $guestThree = $invitee['guest_three'];
+                $withKids = $invitee['kids_count'];
+                $guestCount = $invitee['guest_count'];
+                $responded = $invitee['responded'];
             }
         } catch (Exception $e) {
             
@@ -72,9 +79,13 @@
         </div>
         <div class="message">
             <h1>Yas & Jul</h1>
-            <p>INVITE YOU TO CELEBRATE <br> THEIR MARRAIAGE</p>
-            <span>Open the invitation by tapping the stamp seal</span>
+            
+            <?php if (isset($_GET['id'])): ?>
+                <p>INVITE YOU TO CELEBRATE <br> THEIR MARRIAGE</p>
+                <span>Open the invitation by tapping the stamp seal</span>
+            <?php endif; ?>
         </div>
+        <?php if (isset($_GET['id'])): ?>
         <div class="letter-image">
             <img src="images/sealwax.webp" alt="" id="button-click">
             <div class="animated-mail">
@@ -93,11 +104,21 @@
             </div>
             <div class="shadow"></div>
         </div>
+        <?php endif; ?>
     </div>
     
+    <?php if (isset($_GET['id'])): ?>
     <div class="container">
         <?php
-            $images = $imagesRSVP1;
+            if ($guestOne != '' && $guestTwo != '' && $guestThree != '') {
+                $images = $imagesRSVP3;
+            } else if ($guestOne != '' && $guestTwo != '' && $guestThree == '') {
+                $images = $imagesRSVP2;
+            } else if ($guestOne != '' && $guestTwo == '' && $guestThree == '') {
+                $images = $imagesRSVP1;
+            } else {
+                $images = $imagesRSVP1;
+            }
         ?>
         <input type="radio" name="slider" id="item-1" value="1" checked>
         <input type="radio" name="slider" id="item-2" value="2">
@@ -142,7 +163,6 @@
                         </div>
                     </label>
                     <label class="wedding-info" data-info="4" id="wedding-info-4">
-                        <!-- <button id="accept" class="emerald-button">Accept Invitation</button> -->
                         <label class="emerald-button" for="modal-2">Accept Invitation</label>
                         <label class="gold-button" for="modal-1">Decline Invitation</label>
                     </label>
@@ -153,14 +173,17 @@
             </div>
         </div>
     </div>
-
-    
+ 
     <input class="modal-state" id="modal-1" type="checkbox" hidden/>
     <div class="modal">
         <label class="modal__bg" for="modal-1"></label>
         <div class="modal__inner">
             <label class="modal__close" for="modal-1"></label>
-            <p><?=$invitee ? $invitee['guest_one'] : ''?></p>
+            <div class="decline-message">
+                <p class="name">Hi <b><?=$invitee ? $invitee['guest_one'] : ''?></b></p>
+                <p class="confirmation">Are you sure you want to decline this invitation?</p>
+                <button id="decline-invitation" class="gold-button">Decline Invitation</button>
+            </div>
         </div>
     </div>
 
@@ -169,8 +192,24 @@
         <label class="modal__bg" for="modal-2"></label>
         <div class="modal__inner">
             <label class="modal__close" for="modal-2"></label>
-            <p><?=$invitee ? $invitee['guest_one'] : ''?></p>
+            <div class="accept-message">
+                <p class="name">Hi <b><?=$invitee ? $invitee['guest_one'] : ''?></b></p>
+                
+                <?php
+                    if ($guestCount == 3) {
+                        echo "<p class='confirmation'>We're thrilled to have you, <b>".$invitee['guest_two']."</b>, and, <b>".$invitee['guest_three']."</b> with us on our wedding day.";
+                    } else if ($guestCount == 2) {
+                        echo '<p class="confirmation">It brings us great joy to know that you and <b>'.$invitee['guest_two'].'</b> will be present at our wedding.';
+                    } else {
+                        echo "<p class='confirmation'>We're ecstatic about your presence at our wedding celebration.</p>";
+                    }
+                ?>
+                <p class="confirmation">Reservation images will be downloaded in your device</p>
+                <button id="accept-invitation" class="emerald-button">Accept Invitation</button>
+            </div>
         </div>
     </div>
+    
+    <?php endif; ?>
 </body>
 </html>

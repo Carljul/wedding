@@ -155,7 +155,7 @@
     </div>
 
     
-    <input class="modal-state" id="modal-1" type="checkbox" />
+    <input class="modal-state" id="modal-1" type="checkbox" hidden/>
     <div class="modal">
         <label class="modal__bg" for="modal-1"></label>
         <div class="modal__inner">
@@ -164,7 +164,7 @@
         </div>
     </div>
 
-    <input class="modal-state" id="modal-2" type="checkbox" />
+    <input class="modal-state" id="modal-2" type="checkbox" hidden/>
     <div class="modal">
         <label class="modal__bg" for="modal-2"></label>
         <div class="modal__inner">

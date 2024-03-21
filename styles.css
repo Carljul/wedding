@@ -649,4 +649,5 @@ p img {
   border-radius: 10px;
   text-transform: uppercase;
   font-family: 'circular';
+  cursor: pointer;
 }

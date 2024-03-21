@@ -83,4 +83,48 @@ $(document).ready(function() {
         }
         $('body').toggleClass('blue');
     });
+
+    $('#accept-invitation').on('click', function () {
+        let origin = window.location.origin;
+        let guestCount = $(this).data('guest-count');
+        let cover = 'images/invitations/Cover.png';
+        let entourage = 'images/invitations/Entourage.png';
+        let guide = 'images/invitations/Guide.png';
+        let rsvp = 'images/invitations/RSVP'+guestCount+'.png';
+
+        setTimeout(() => {
+            var coverLink = document.createElement('a');
+            coverLink.href = origin + '/wedding/' + cover;
+            coverLink.download  = 'Cover.png';
+            document.body.appendChild(coverLink);
+            coverLink.click();
+            document.body.removeChild(coverLink);
+        }, 200);
+        setTimeout(() => {
+            var entourageLink = document.createElement('a');
+            entourageLink.href = origin + '/wedding/' + entourage;
+            entourageLink.download  = 'Entourage.png';
+            document.body.appendChild(entourageLink);
+            entourageLink.click();
+            document.body.removeChild(entourageLink);
+        }, 400);
+
+        setTimeout(() => {
+            var guideLink = document.createElement('a');
+            guideLink.href = origin + '/wedding/' + guide;
+            guideLink.download  = 'Guide.png';
+            document.body.appendChild(guideLink);
+            guideLink.click();
+            document.body.removeChild(guideLink);
+        }, 600);
+
+        setTimeout(() => {
+            var rsvpLink = document.createElement('a');
+            rsvpLink.href = origin + '/wedding/' + rsvp;
+            rsvpLink.download  = 'RSVP.png';
+            document.body.appendChild(rsvpLink);
+            rsvpLink.click();
+            document.body.removeChild(rsvpLink);
+        }, 800);
+    });
 });

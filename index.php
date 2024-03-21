@@ -205,7 +205,7 @@
                     }
                 ?>
                 <p class="confirmation">Reservation images will be downloaded in your device</p>
-                <button id="accept-invitation" class="emerald-button">Accept Invitation</button>
+                <button id="accept-invitation" data-guest-count="<?=$guestCount;?>" class="emerald-button">Accept Invitation</button>
             </div>
         </div>
     </div>

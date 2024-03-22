@@ -16,7 +16,7 @@ include 'env.php';
         $attendees = 0;
 
         if ($connected) {
-            $sqlCount = "SELECT SUM(guest_count + kids_count) AS total_attendees FROM attendees WHERE willattend = 1";
+            $sqlCount = "SELECT SUM(guest_count + kids_count) AS total_attendees FROM attendees WHERE willattend = 1 && responded = 1";
             $result = mysqli_query($conn, $sqlCount);
             
             if (mysqli_num_rows($result) > 0) {
@@ -166,7 +166,7 @@ include 'env.php';
                                         $html .= '<td>'.$row['guest_two'].'</td>';
                                         $html .= '<td>'.$row['guest_three'].'</td>';
                                         $html .= '<td>'.$row['kids_count'].'</td>';
-                                        $html .= '<td>'.($row['willattend'] ? 'Attend' : 'Declined').'</td>';
+                                        $html .= '<td>'.($row['willattend'] && $row['responded'] ? 'Attend' : (!$row['willattend'] && !$row['responded'] ? '' : 'Declined')).'</td>';
                                         $html .= '<td>'.$row['guest_count'].'</td>';
                                         $html .= '<td>'.($row['responded'] ? 'Yes' : 'No').'</td>';
                                         $html .= '<td class="actionColumn"><form action="guests.php" method="POST"><input hidden name="method" value="toDelete" /><input name="deleteId" value="'.$row['id'].'" hidden/><button type="submit" class="btn btn-danger">Delete</button></form><a href="'.$link.''.$row['id'].'" target="_blank" class="btn btn-warning">Visit Link</a></td>';

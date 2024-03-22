@@ -103,6 +103,7 @@ include 'env.php';
                         <br>
                         <a href="https://maps.app.goo.gl/VAiCaWkF5tsvwgCk8" target="_blank"><small style="text-transform: capitalize;">6Q55+G7, Natalio B. Bacalso S. National Highway, City of Naga Cebu</small></a>
                     </p>
+                    <a href="images/invitations/RSVP<?=$guestCount;?>.png" download="RSVP" style="background: #27ae60; color: #fff; padding: 10px; border-radius: 10px; text-transform: uppercase; font-family: 'circular'; text-decoration: none; text-align: center;">Download Your RSVP Here!</a>
                 <?php elseif ($responded && !$willattend): ?>
                     <p>THANK YOU FOR RESPONDING <b><?=$guestOne;?></b></p>
                 <?php else: ?>

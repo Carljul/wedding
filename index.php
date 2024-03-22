@@ -189,7 +189,7 @@ include 'env.php';
                     <label class="wedding-info" data-info="4" id="wedding-info-4">
                         <label class="emerald-button" for="modal-2">Accept Invitation</label>
                         <label class="gold-button" for="modal-1">Decline Invitation</label>
-                        <label class="refresh-button">Done</label>
+                        <label class="refresh-button">Done! This device is already used to accept invitation, please use another device</label>
                     </label>
                 </div>
                 <div class="play-icon next-icon">

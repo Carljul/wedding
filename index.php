@@ -81,7 +81,13 @@ include 'env.php';
                     <p>
                         SEE YOU THERE
                         <br>
-                        <b><?=$guestOne;?>!</b>
+                        <b><?=$guestOne;?>!</b><br>
+                        <?php if ($guestTwo != ''): ?>
+                            <b><?=$guestTwo;?>!</b><br>
+                        <?php endif; ?>
+                        <?php if ($guestThree != ''): ?>
+                            <b><?=$guestThree;?>!</b>
+                        <?php endif; ?>
                     </p>
                     <p>
                         Don't forget:

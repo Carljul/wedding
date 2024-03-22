@@ -57,7 +57,7 @@ include 'env.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?=($guestOne ?? '')?> You are Invited - Yasmin & Julcarl's Wedding</title>
+    <title><?=($guestOne ?? '')?> you are invited to Yasmin & Julcarl's Wedding</title>
     <link rel="stylesheet" href="styles.css">
     <script src="jquery-3.7.1.min.js"></script>
     <script src="behavior.js"></script>

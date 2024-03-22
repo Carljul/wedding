@@ -88,6 +88,10 @@ include 'env.php';
                         <?php if ($guestThree != ''): ?>
                             <b><?=$guestThree;?>!</b>
                         <?php endif; ?>
+                        <?php if ($withKids > 0): ?>
+                            <b>and you may bring your <?=$withKids;?> cute kids!</b>
+                            <br>
+                        <?php endif; ?>
                     </p>
                     <p>
                         Don't forget:

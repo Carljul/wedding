@@ -89,7 +89,7 @@ include 'env.php';
                             <b><?=$guestThree;?>!</b>
                         <?php endif; ?>
                         <?php if ($withKids > 0): ?>
-                            <b>and you may bring your <?=$withKids;?> cute kids!</b>
+                            <b>and you may bring your <?=$withKids;?> cute kid/s!</b>
                             <br>
                         <?php endif; ?>
                     </p>

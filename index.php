@@ -76,7 +76,7 @@ include 'env.php';
         <div class="message">
             <h1>Yas & Jul</h1>
             <div class="subcontent">
-            <?php if (isset($_GET['id'])): ?>
+            <?php if ($invitee): ?>
                 <?php if ($responded && $willattend): ?>
                     <p>SEE YOU THERE <b><?=$guestOne;?>!</b></p>
                 <?php elseif ($responded && !$willattend): ?>
@@ -87,13 +87,13 @@ include 'env.php';
             <?php endif; ?>
         </div>
         
-        <?php if (isset($_GET['id'])): ?>
+        <?php if ($invitee): ?>
             <?php if (!$responded): ?>
                 <span>Open the invitation by tapping the stamp seal</span>
             <?php endif; ?>
         <?php endif; ?>
         </div>
-        <?php if (isset($_GET['id'])): ?>
+        <?php if ($invitee): ?>
             <?php if (!$responded): ?>
                 <div class="letter-image">
                     <img src="images/sealwax.webp" alt="" id="button-click">
@@ -117,7 +117,7 @@ include 'env.php';
         <?php endif; ?>
     </div>
     
-    <?php if (isset($_GET['id'])): ?>
+    <?php if ($invitee): ?>
     <div class="container">
         <?php
             if ($guestOne != '' && $guestTwo != '' && $guestThree != '') {

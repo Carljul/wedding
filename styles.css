@@ -324,9 +324,6 @@ input[type=radio] {
     width: 100%;
     padding: 10px;
     border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .wedding-info .title {
@@ -450,7 +447,8 @@ input[type=radio] {
   position: relative;
 }
 
-.message h1 {
+.message h1,
+.message h2 {
   font-family: "Great Vibes", cursive;
   margin-bottom: 0;
   margin-top: 0;
@@ -460,6 +458,10 @@ input[type=radio] {
   border-top: 1px solid black;
   padding: 10px;
   border-bottom: 1px solid black;;
+}
+
+.subcontent {
+  text-transform: uppercase;
 }
 
 .message span {
@@ -650,4 +652,28 @@ p img {
   text-transform: uppercase;
   font-family: 'circular';
   cursor: pointer;
+}
+
+
+.downloads {
+  display: none;
+  justify-content: center;
+  gap: 10px;
+}
+
+.downloads a {
+  background: #27ae60;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-family: 'circular';
+  text-decoration: none;
+  text-align: center;
+}
+
+.refresh-button {
+  display: none;
+  background: #0058ff;
+  color: #fff;
 }

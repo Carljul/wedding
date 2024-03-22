@@ -23,11 +23,6 @@ include 'env.php';
     if (isset($_GET['id'])) {
         $connected = false;
         try {
-            $servername = "localhost";
-            $username = $dev ? "u585112692_wedding" : "root";
-            $password = $dev ? "Yassel23!" : "";
-            $dbname = $dev ? "u585112692_wedding" : "wedding";
-
             // Create connection
             $conn = mysqli_connect($servername, $username, $password, $dbname);
         
@@ -48,6 +43,7 @@ include 'env.php';
                 $guestTwo = $invitee['guest_two'];
                 $guestThree = $invitee['guest_three'];
                 $withKids = $invitee['kids_count'];
+                $willattend = $invitee['willattend'];
                 $guestCount = $invitee['guest_count'];
                 $responded = $invitee['responded'];
             }
@@ -61,7 +57,7 @@ include 'env.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You are Invited - Yasmin & Julcarl's Wedding</title>
+    <title><?=($guestOne ?? '')?> You are Invited - Yasmin & Julcarl's Wedding</title>
     <link rel="stylesheet" href="styles.css">
     <script src="jquery-3.7.1.min.js"></script>
     <script src="behavior.js"></script>
@@ -79,31 +75,45 @@ include 'env.php';
         </div>
         <div class="message">
             <h1>Yas & Jul</h1>
-            
+            <div class="subcontent">
             <?php if (isset($_GET['id'])): ?>
-                <p>INVITE YOU TO CELEBRATE <br> THEIR MARRIAGE</p>
-                <span>Open the invitation by tapping the stamp seal</span>
+                <?php if ($responded && $willattend): ?>
+                    <p>SEE YOU THERE <b><?=$guestOne;?>!</b></p>
+                <?php elseif ($responded && !$willattend): ?>
+                    <p>THANK YOU FOR RESPONDING <b><?=$guestOne;?></b></p>
+                <?php else: ?>
+                    <p>INVITE YOU TO CELEBRATE <br> THEIR MARRIAGE</p>
+                <?php endif; ?>
             <?php endif; ?>
         </div>
+        
         <?php if (isset($_GET['id'])): ?>
-        <div class="letter-image">
-            <img src="images/sealwax.webp" alt="" id="button-click">
-            <div class="animated-mail">
-                <div class="back-fold"></div>
-                <div class="letter">
-                    <div class="letter-context-body">
-                        <img src="images/invitations/Cover.png" alt="">
-                        <img src="images/invitations/Guide.png" alt="">
-                        <img src="images/invitations/Entourage.png" alt="">
-                        <img src="images/invitations/RSVP1.png" alt="">
-                    </div>
-                </div>
-                <div class="top-fold"></div>
-                <div class="body"></div>
-                <div class="left-fold"></div>
-            </div>
-            <div class="shadow"></div>
+            <?php if (!$responded): ?>
+                <span>Open the invitation by tapping the stamp seal</span>
+            <?php endif; ?>
+        <?php endif; ?>
         </div>
+        <?php if (isset($_GET['id'])): ?>
+            <?php if (!$responded): ?>
+                <div class="letter-image">
+                    <img src="images/sealwax.webp" alt="" id="button-click">
+                    <div class="animated-mail">
+                        <div class="back-fold"></div>
+                        <div class="letter">
+                            <div class="letter-context-body">
+                                <img src="images/invitations/Cover.png" alt="">
+                                <img src="images/invitations/Guide.png" alt="">
+                                <img src="images/invitations/Entourage.png" alt="">
+                                <img src="images/invitations/RSVP1.png" alt="">
+                            </div>
+                        </div>
+                        <div class="top-fold"></div>
+                        <div class="body"></div>
+                        <div class="left-fold"></div>
+                    </div>
+                    <div class="shadow"></div>
+                </div>
+            <?php endif; ?>
         <?php endif; ?>
     </div>
     
@@ -165,6 +175,7 @@ include 'env.php';
                     <label class="wedding-info" data-info="4" id="wedding-info-4">
                         <label class="emerald-button" for="modal-2">Accept Invitation</label>
                         <label class="gold-button" for="modal-1">Decline Invitation</label>
+                        <label class="refresh-button">Done</label>
                     </label>
                 </div>
                 <div class="play-icon next-icon">
@@ -174,38 +185,53 @@ include 'env.php';
         </div>
     </div>
  
+    <!-- Decline -->
     <input class="modal-state" id="modal-1" type="checkbox" hidden/>
     <div class="modal">
         <label class="modal__bg" for="modal-1"></label>
         <div class="modal__inner">
             <label class="modal__close" for="modal-1"></label>
             <div class="decline-message">
-                <p class="name">Hi <b><?=$invitee ? $invitee['guest_one'] : ''?></b></p>
-                <p class="confirmation">Are you sure you want to decline this invitation?</p>
-                <button id="decline-invitation" class="gold-button">Decline Invitation</button>
+                <div class="message">
+                    <p class="name">Hi <b><?=$invitee ? $invitee['guest_one'] : ''?></b></p>
+                    <p class="confirmation">Are you sure you want to decline this invitation?</p>
+                    <span>&nbsp;</span>
+                </div>
+                <button id="decline-invitation" class="gold-button" data-guest-count="<?=$guestCount;?>" data-id="<?=$_GET['id'];?>">Decline Invitation</button>
             </div>
         </div>
     </div>
 
+    <!-- Accepting -->
     <input class="modal-state" id="modal-2" type="checkbox" hidden/>
     <div class="modal">
         <label class="modal__bg" for="modal-2"></label>
         <div class="modal__inner">
             <label class="modal__close" for="modal-2"></label>
             <div class="accept-message">
-                <p class="name">Hi <b><?=$invitee ? $invitee['guest_one'] : ''?></b></p>
-                
-                <?php
-                    if ($guestCount == 3) {
-                        echo "<p class='confirmation'>We're thrilled to have you, <b>".$invitee['guest_two']."</b>, and, <b>".$invitee['guest_three']."</b> with us on our wedding day.";
-                    } else if ($guestCount == 2) {
-                        echo '<p class="confirmation">It brings us great joy to know that you and <b>'.$invitee['guest_two'].'</b> will be present at our wedding.';
-                    } else {
-                        echo "<p class='confirmation'>We're ecstatic about your presence at our wedding celebration.</p>";
-                    }
-                ?>
-                <p class="confirmation">Reservation images will be downloaded in your device</p>
-                <button id="accept-invitation" data-guest-count="<?=$guestCount;?>" class="emerald-button">Accept Invitation</button>
+                <div id="message-invitation" class="message">
+                    <p class="name">Hi <b><?=$invitee ? $invitee['guest_one'] : ''?></b></p>
+                    
+                    <?php
+                        if ($guestCount == 3) {
+                            echo "<p class='confirmation'>We're thrilled to have you, <b>".$invitee['guest_two']."</b>, and, <b>".$invitee['guest_three']."</b> with us on our wedding day.";
+                        } else if ($guestCount == 2) {
+                            echo '<p class="confirmation">It brings us great joy to know that you and <b>'.$invitee['guest_two'].'</b> will be present at our wedding.';
+                        } else {
+                            echo "<p class='confirmation'>We're ecstatic about your presence at our wedding celebration.</p>";
+                        }
+                    ?>
+                </div>
+                <div class="downloads">
+                    <div class="message">
+                        <h2>Thank you for accepting! Please download the following images!</h2>
+                    </div>
+                    <a href="images/invitations/Cover.png" download="Cover">Download Cover</a>
+                    <a href="images/invitations/Entourage.png" download="Entourage">Download Entourage</a>
+                    <a href="images/invitations/Guide.png" download="Guide">Download Guide</a>
+                    <a href="images/invitations/RSVP<?=$guestCount;?>.png" download="RSVP">Download RSVP</a>
+                </div>
+                <button id="accept-invitation" data-guest-count="<?=$guestCount;?>" data-id="<?=$_GET['id'];?>" class="emerald-button">Accept Invitation</button>
             </div>
         </div>
     </div>

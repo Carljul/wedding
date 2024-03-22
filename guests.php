@@ -2,12 +2,6 @@
 include 'env.php';
     $connected = false;
     try {
-        $servername = "localhost";
-        $username = $dev ? "u585112692_wedding" : "root";
-        $password = $dev ? "Yassel23!" : "";
-        $dbname = $dev ? "u585112692_wedding" : "wedding";
-
-        $link = $dev ? 'http://www.yas-and-jul.website/?id=':'http://localhost/wedding/?id=';
     
         // Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);

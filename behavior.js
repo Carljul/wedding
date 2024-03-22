@@ -1,6 +1,16 @@
 $(document).ready(function() {
     let current = 1;
 
+    function checkInvitation() {
+        if (localStorage.getItem('invitation') != null)
+        {
+            $('.gold-button').remove();
+            $('.emerald-button').remove();
+            $('.refresh-button').show();
+        }
+    }
+    checkInvitation()
+
     // Changing Backgrounds
     function loadimg(){
         if (current >= 18) {
@@ -85,46 +95,59 @@ $(document).ready(function() {
     });
 
     $('#accept-invitation').on('click', function () {
-        let origin = window.location.origin;
-        let guestCount = $(this).data('guest-count');
-        let cover = 'images/invitations/Cover.png';
-        let entourage = 'images/invitations/Entourage.png';
-        let guide = 'images/invitations/Guide.png';
-        let rsvp = 'images/invitations/RSVP'+guestCount+'.png';
-
-        setTimeout(() => {
-            var coverLink = document.createElement('a');
-            coverLink.href = origin + '/wedding/' + cover;
-            coverLink.download  = 'Cover.png';
-            document.body.appendChild(coverLink);
-            coverLink.click();
-            document.body.removeChild(coverLink);
-        }, 200);
-        setTimeout(() => {
-            var entourageLink = document.createElement('a');
-            entourageLink.href = origin + '/wedding/' + entourage;
-            entourageLink.download  = 'Entourage.png';
-            document.body.appendChild(entourageLink);
-            entourageLink.click();
-            document.body.removeChild(entourageLink);
-        }, 400);
-
-        setTimeout(() => {
-            var guideLink = document.createElement('a');
-            guideLink.href = origin + '/wedding/' + guide;
-            guideLink.download  = 'Guide.png';
-            document.body.appendChild(guideLink);
-            guideLink.click();
-            document.body.removeChild(guideLink);
-        }, 600);
-
-        setTimeout(() => {
-            var rsvpLink = document.createElement('a');
-            rsvpLink.href = origin + '/wedding/' + rsvp;
-            rsvpLink.download  = 'RSVP.png';
-            document.body.appendChild(rsvpLink);
-            rsvpLink.click();
-            document.body.removeChild(rsvpLink);
-        }, 800);
+        let id = $(this).data('id');
+        $.ajax({
+            type: 'POST',
+            url: 'accept.php',
+            data: { id: id }, 
+            contentType: 'application/x-www-form-urlencoded',
+            processData: true,
+            success: function (data) {
+                if (data == 200) {
+                    localStorage.setItem('invitation', 1);
+                    $('#message-invitation').hide();
+                    $('#accept-invitation').hide()
+                    $('.gold-button').remove();
+                    $('.emerald-button').remove();
+                    $('.refresh-button').show();
+                    $('.downloads').css('display', 'grid');
+                } else {
+                    alert('Something went wrong')
+                }
+            },
+            error: function (err) {
+                alert('Something went wrong')
+            }
+        })
     });
+
+    $('#decline-invitation').on('click', function () {
+        let id = $(this).data('id');
+        $.ajax({
+            type: 'POST',
+            url: 'decline.php',
+            data: { id: id }, 
+            contentType: 'application/x-www-form-urlencoded',
+            processData: true,
+            success: function (data) {
+                if (data == 200) {
+                    localStorage.setItem('invitation', 0);
+                    $('#message-invitation').hide();
+                    $('.gold-button').remove();
+                    $('.emerald-button').remove();
+                    $('.refresh-button').show();
+                    $('.downloads').css('display', 'grid');
+                } else {
+                    alert('Something went wrong')
+                }
+            },
+            error: function (err) {
+                alert('Something went wrong')
+            }
+        })
+    });
+
+    $('.refresh-button').on('click', function () {
+        location.reload();
+    })
 });

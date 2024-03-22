@@ -13,6 +13,19 @@ include 'env.php';
         die("Connection failed: " . mysqli_connect_error());
         }
         $connected = true;
+        $attendees = 0;
+
+        if ($connected) {
+            $sqlCount = "SELECT SUM(guest_count + kids_count) AS total_attendees FROM attendees WHERE willattend = 1";
+            $result = mysqli_query($conn, $sqlCount);
+            
+            if (mysqli_num_rows($result) > 0) {
+                while($row = mysqli_fetch_assoc($result)) {
+                    $attendees = $row['total_attendees'];
+                }
+            }
+        }
+
         
         if(isset($_POST['method'])) {
             if ($_POST['method'] == 'toAdd' && isset($_SESSION['user'])) {
@@ -123,6 +136,7 @@ include 'env.php';
                     </div>
                 </div>
                 <div class="col-sm-9">
+                    <h3>No. of guests will attend: <?=$attendees;?></h3>
                     <table id="myTable">
                         <thead>
                             <tr>

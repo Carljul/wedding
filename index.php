@@ -78,7 +78,21 @@ include 'env.php';
             <div class="subcontent">
             <?php if ($invitee): ?>
                 <?php if ($responded && $willattend): ?>
-                    <p>SEE YOU THERE <b><?=$guestOne;?>!</b></p>
+                    <p>
+                        SEE YOU THERE
+                        <br>
+                        <b><?=$guestOne;?>!</b>
+                    </p>
+                    <p>
+                        Don't forget:
+                        <br>
+                        <b>May 6, 2024, at exactly 10 AM.</b>
+                    </p>
+                    <p>
+                        <b>@ Archdiocesan Shrine of St. Francis of Assisi</b>
+                        <br>
+                        <a href="https://maps.app.goo.gl/VAiCaWkF5tsvwgCk8" target="_blank"><small style="text-transform: capitalize;">6Q55+G7, Natalio B. Bacalso S. National Highway, City of Naga Cebu</small></a>
+                    </p>
                 <?php elseif ($responded && !$willattend): ?>
                     <p>THANK YOU FOR RESPONDING <b><?=$guestOne;?></b></p>
                 <?php else: ?>
